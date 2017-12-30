@@ -24,3 +24,10 @@
   background-color: blue;
   border-radius: 50%;
 }
+
+.scoreBoard {
+  font-family: sans-serif;
+  font-display: block;
+  font-size: 25px;
+  color: black
+}

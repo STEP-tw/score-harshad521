@@ -2,7 +2,6 @@ let snake=undefined;
 let food=undefined;
 let numberOfRows=60;
 let numberOfCols=120;
-
 let animator=undefined;
 
 const animateSnake=function() {
@@ -14,6 +13,7 @@ const animateSnake=function() {
   paintHead(head);
   if(head.isSameCoordAs(food)) {
     snake.grow();
+    displayScore();
     createFood(numberOfRows,numberOfCols);
     drawFood(food);
   }
@@ -54,6 +54,11 @@ const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
 }
 
+const getScore = function(){
+  let foodEaten = snake.getSnakeLength();
+  return foodEaten*10;
+}
+
 const startGame=function() {
   createSnake();
   drawGrids(numberOfRows,numberOfCols);
@@ -62,6 +67,10 @@ const startGame=function() {
   drawFood(food);
   addKeyListener();
   animator=setInterval(animateSnake,140);
+}
+
+const displayScore = function () {
+  document.getElementById("_scoreBoard").innerText = `Score: ${getScore()}`;
 }
 
 window.onload=startGame;
