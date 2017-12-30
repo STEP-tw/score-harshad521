@@ -1,7 +1,6 @@
 const Snake=function(head,body) {
   this.head=head;
   this.body=body;
-  //this.snakeLength = 0;
 }
 
 Snake.prototype={
@@ -18,7 +17,6 @@ Snake.prototype={
   },
   grow:function() {
     this.body.unshift(new Position(Infinity,Infinity,this.direction));
-    //this.snakeLength++;
   },
   turnLeft:function() {
     this.head=this.head.turnLeft();

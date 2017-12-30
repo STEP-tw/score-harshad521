@@ -46,17 +46,11 @@ const createSnake=function() {
   body.push(tail);
   body.push(tail.next());
   let head=tail.next().next();
-
   snake=new Snake(head,body);
 }
 
 const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
-}
-
-const getScore = function(){
-  let foodEaten = snake.getSnakeLength();
-  return foodEaten*10;
 }
 
 const startGame=function() {
@@ -70,7 +64,9 @@ const startGame=function() {
 }
 
 const displayScore = function () {
-  document.getElementById("_scoreBoard").innerText = `Score: ${getScore()}`;
+  let score = new Score(10);
+  score.updateScore(snake.getSnakeLength());
+  document.getElementById("_scoreBoard").innerText = `Score: ${score.getScore()}`;
 }
 
 window.onload=startGame;
