@@ -1,6 +1,7 @@
 const Snake=function(head,body) {
   this.head=head;
   this.body=body;
+  this.foodSwallowed = 0;
 }
 
 Snake.prototype={
@@ -15,8 +16,10 @@ Snake.prototype={
     this.head=this.head.next();
     return this.body.shift();
   },
-  grow:function() {
-    this.body.unshift(new Position(Infinity,Infinity,this.direction));
+  grow:function(growthFactor) {
+    for (var i = 0; i < growthFactor; i++) {
+      this.body.unshift(new Position(Infinity,Infinity,this.direction));
+    }
   },
   turnLeft:function() {
     this.head=this.head.turnLeft();
@@ -25,6 +28,9 @@ Snake.prototype={
     this.head=this.head.turnRight();
   },
   getSnakeLength:function() {
-    return this.body.length-2;
+    return this.foodSwallowed;
+  },
+  updateFoodSwallowedCount : function() {
+    this.foodSwallowed++;
   }
 }
